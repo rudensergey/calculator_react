@@ -1,0 +1,24 @@
+{
+  "name": "calculator-react",
+  "version": "1.0.0",
+  "description": "rewrite calculator to React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudensergey/calculator_react.git"
+  },
+  "author": "rudensergey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudensergey/calculator_react/issues"
+  },
+  "homepage": "https://github.com/rudensergey/calculator_react#readme",
+  "keywords": [],
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2"
+  }
+}

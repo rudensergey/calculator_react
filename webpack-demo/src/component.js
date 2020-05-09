@@ -274,40 +274,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // ReactDOM.render(<Reservation />, document.getElementById('root'))
 
-function BoilingVerdict(props) {
-    if (props.tempScale === "f") {
-        if (props.celsius >= 220) {
-            return React.createElement(
-                "p",
-                null,
-                "The water would boil."
-            );
-        }
-        return React.createElement(
-            "p",
-            null,
-            "The water would not boil."
-        );
-    } else {
-        if (props.celsius >= 100) {
-            return React.createElement(
-                "p",
-                null,
-                "The water would boil."
-            );
-        }
-        return React.createElement(
-            "p",
-            null,
-            "The water would not boil."
-        );
-    }
+var scaleNames = {
+    c: "Celsius",
+    f: "Fahrenheit"
+};
+
+function toCelsius(fahrenheit) {
+    return (fahrenheit - 32) * 5 / 9;
 }
 
-var scaleNames = {
-    f: "Фаренгейта",
-    c: "Цельсия"
-};
+function toFahrenheit(celsius) {
+    return celsius * 9 / 5 + 32;
+}
+
+function tryConvert(temperature, convert) {
+    var input = parseFloat(temperature);
+    if (Number.isNaN(input)) {
+        return "";
+    }
+    var output = convert(input);
+    var rounded = Math.round(output * 1000) / 1000;
+    return rounded.toString();
+}
+
+function BoilingVerdict(props) {
+    if (props.celsius >= 100) {
+        return React.createElement(
+            "p",
+            null,
+            "The water would boil."
+        );
+    }
+    return React.createElement(
+        "p",
+        null,
+        "The water would not boil."
+    );
+}
 
 var TemperatureInput = function (_React$Component) {
     _inherits(TemperatureInput, _React$Component);
@@ -318,19 +321,18 @@ var TemperatureInput = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (TemperatureInput.__proto__ || Object.getPrototypeOf(TemperatureInput)).call(this, props));
 
         _this.handleChange = _this.handleChange.bind(_this);
-        _this.state = { temperature: "" };
         return _this;
     }
 
     _createClass(TemperatureInput, [{
         key: "handleChange",
         value: function handleChange(e) {
-            this.setState({ temperature: e.target.value });
+            this.props.onTemperatureChange(e.target.value);
         }
     }, {
         key: "render",
         value: function render() {
-            var temperature = this.state.temperature;
+            var temperature = this.props.temperature;
             var scale = this.props.scale;
             return React.createElement(
                 "fieldset",
@@ -338,12 +340,11 @@ var TemperatureInput = function (_React$Component) {
                 React.createElement(
                     "legend",
                     null,
-                    "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0442\u0435\u043C\u043F\u0435\u0440\u0430\u0442\u0443\u0440\u0443 \u0432 \u0433\u0440\u0430\u0434\u0443\u0441\u0430\u0445 ",
+                    "Enter temperature in ",
                     scaleNames[scale],
                     ":"
                 ),
-                React.createElement("input", { value: temperature, onChange: this.handleChange }),
-                React.createElement(BoilingVerdict, { celsius: parseFloat(temperature), tempScale: scale })
+                React.createElement("input", { value: temperature, onChange: this.handleChange })
             );
         }
     }]);
@@ -354,20 +355,49 @@ var TemperatureInput = function (_React$Component) {
 var Calculator = function (_React$Component2) {
     _inherits(Calculator, _React$Component2);
 
-    function Calculator() {
+    function Calculator(props) {
         _classCallCheck(this, Calculator);
 
-        return _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).apply(this, arguments));
+        var _this2 = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this, props));
+
+        _this2.handleCelsiusChange = _this2.handleCelsiusChange.bind(_this2);
+        _this2.handleFahrenheitChange = _this2.handleFahrenheitChange.bind(_this2);
+        _this2.state = { temperature: "", scale: "c" };
+        return _this2;
     }
 
     _createClass(Calculator, [{
+        key: "handleCelsiusChange",
+        value: function handleCelsiusChange(temperature) {
+            this.setState({ scale: "c", temperature: temperature });
+        }
+    }, {
+        key: "handleFahrenheitChange",
+        value: function handleFahrenheitChange(temperature) {
+            this.setState({ scale: "f", temperature: temperature });
+        }
+    }, {
         key: "render",
         value: function render() {
+            var scale = this.state.scale;
+            var temperature = this.state.temperature;
+            var celsius = scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+            var fahrenheit = scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
+
             return React.createElement(
                 "div",
                 null,
-                React.createElement(TemperatureInput, { scale: "f" }),
-                React.createElement(TemperatureInput, { scale: "c" })
+                React.createElement(TemperatureInput, {
+                    scale: "c",
+                    temperature: celsius,
+                    onTemperatureChange: this.handleCelsiusChange
+                }),
+                React.createElement(TemperatureInput, {
+                    scale: "f",
+                    temperature: fahrenheit,
+                    onTemperatureChange: this.handleFahrenheitChange
+                }),
+                React.createElement(BoilingVerdict, { celsius: parseFloat(celsius) })
             );
         }
     }]);

@@ -1,0 +1,235 @@
+.calculator__box {
+    min-width: 320px;
+    max-width: 650px;
+    height: 650px;
+    margin: 0px auto;
+    border-radius: 3px;
+    background: #FFFFFF;
+    box-shadow: 0px 9px 14px rgba(0, 0, 0, 0.09);
+    display: grid;
+    grid-template-columns: 7% 86% 7%;
+    grid-template-rows: 5% 20% 20% 25% 10% 20%;
+}
+
+.text__topic {
+    font-size: 57px;
+    font-weight: bold;
+    cursor: default;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.text__form {
+    color: #B2B2B2;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.calculator__sum {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+}
+
+.calculator__input {
+    height: 62px;
+    width: 100%;
+    border: 4px solid #BDD0D1;
+    margin-top: 12px;
+    padding-left: 20px;
+    color: #3F3F3F;
+    font-size: 30px;
+    transition-property: border;
+    transition-duration: 0.2s;
+    box-sizing: border-box;
+}
+
+.calculator__input:hover {
+    border: 4px solid #4D8D8D;
+}
+
+.calculator__input:focus {
+    outline: none;
+    border: 4px solid #4D8D8D;
+}
+
+.calculator__term {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-content: end;
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.calculator__term .text__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+.term__timeline {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+}
+
+.term__timeline h6 {
+    color: #B2B2B2;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.term__timeline .term__current {
+    color: #3F3F3F;
+    font-size: 30px;
+}
+
+.term__line {
+    height: 4px;
+    width: 100%;
+    margin: 20px 0px;
+    background-color: #C4C4C4;
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+}
+
+.term__toggle {
+    position: relative;
+    top: -18px;
+    height: 36px;
+    width: 36px;
+    margin: auto 0px;
+    border: 3px solid #4D8D8D;
+    background: #FFFFFF;
+    border-radius: 50%;
+    cursor: grab;
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    touch-action: pan-x;
+}
+
+.calculator__checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    grid-column: 2 / 3;
+    grid-row: 5 / 6;
+}
+
+.calculator__checkbox .container {
+    position: relative;
+    padding-left: 40px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+    color: #3F3F3F;
+    font-family: "Roboto", sans-serif;
+    font-size: 19px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    display: block;
+}
+
+.calculator__checkbox .container input {
+    position: absolute;
+    height: 0;
+    width: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.calculator__checkbox .checkmark {
+    position: absolute;
+    left: 0;
+    top: -3px;
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+    background-color: rgb(231, 231, 231);
+}
+
+.calculator__checkbox .container:hover input ~ .checkmark {
+    background-color: rgb(209, 209, 209);
+}
+
+.calculator__checkbox .container input:checked ~ .checkmark {
+    background-color: #4D8D8D;
+}
+
+.calculator__checkbox .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.calculator__checkbox .container .checkmark::after {
+    left: 12px;
+    top: 7px;
+    height: 10px;
+    width: 5px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.calculator__checkbox .container input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.calculator__result {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+    z-index: 2;
+}
+
+.calculator__result .text__form {
+    color: white;
+    opacity: 0.7;
+    cursor: default;
+}
+
+.calculator__result .text__result {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: default;
+}
+
+.calculator__result__background {
+    height: 100%;
+    width: 100%;
+    border-radius: 0px 0px 3px 3px;
+    grid-column: 1 / -1;
+    grid-row: 6 / 7;
+    background: #4D8D8D;
+    z-index: 1;
+}

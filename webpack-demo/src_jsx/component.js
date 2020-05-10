@@ -20,6 +20,23 @@ const styles = {
         gridRow: "2 / 3",
     },
 
+    text__form: {
+        color: "#B2B2B2",
+        fontSize: "19px",
+        fontWeight: "bold",
+        cursor: "default",
+    },
+
+    calculator__sum: {
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        gridColumn: "2 / 3",
+        gridRow: "3 / 4",
+    },
+
     calculator__result: {
         height: "100%",
         width: "100%",
@@ -32,9 +49,9 @@ const styles = {
         zIndex: "2",
     },
 
-    text__form: {
+    calculator__result__text__form: {
         color: "white",
-        opacity: 0.7,
+        opacity: "0.7",
         cursor: "default",
     },
 
@@ -53,8 +70,49 @@ const styles = {
         gridRow: "6 / 7",
         background: "#4D8D8D",
         zIndex: "1",
-    }
+    },
 };
+class Calculator extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div style={styles.calculator__box}>
+                <h2 style={styles.text__topic}>
+                    Калькулятор дохода Affilate Coin
+                </h2>
+                <MainPart />
+                <Result />
+                <div style={styles.calculator__result__background}></div>
+            </div>
+        );
+    }
+}
+
+class MainPart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div style={styles.calculator__sum}>
+                <h6 style={styles.text__form}>Сумма, которую хотите инвестировать, $</h6>
+                <input
+                    id="sum"
+                    class="calculator__input"
+                    autocomplete="off"
+                    value="0"
+                    type="number"
+                    pattern="[0-9]*"
+                    inputmode="decimal"
+                />
+            </div>
+        );
+    }
+}
 
 class Result extends React.Component {
     constructor(props) {
@@ -64,7 +122,7 @@ class Result extends React.Component {
     render() {
         return (
             <div style={styles.calculator__result}>
-                <h6 style={styles.text__form}>Результат:</h6>
+                <h6 style={Object.assign({}, styles.text__form, styles.calculator__result__text__form)}>Результат:</h6>
                 <p id="result" style={styles.text__result}>
                     0.00$
                 </p>
@@ -72,23 +130,6 @@ class Result extends React.Component {
         );
     }
 }
-class Calculator extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div style={styles.calculator__box}>
-                <h2 style={styles.text__topic}>Калькулятор дохода Affilate Coin</h2>
-                <Result />
-                <div style={styles.calculator__result__background}></div>
-            </div>
-        );
-    }
-}
-
-
 
 ReactDOM.render(<Calculator />, document.getElementById("root"));
 

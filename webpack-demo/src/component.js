@@ -28,6 +28,23 @@ var styles = {
         gridRow: "2 / 3"
     },
 
+    text__form: {
+        color: "#B2B2B2",
+        fontSize: "19px",
+        fontWeight: "bold",
+        cursor: "default"
+    },
+
+    calculator__sum: {
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        gridColumn: "2 / 3",
+        gridRow: "3 / 4"
+    },
+
     calculator__result: {
         height: "100%",
         width: "100%",
@@ -40,9 +57,9 @@ var styles = {
         zIndex: "2"
     },
 
-    text__form: {
+    calculator__result__text__form: {
         color: "white",
-        opacity: 0.7,
+        opacity: "0.7",
         cursor: "default"
     },
 
@@ -64,40 +81,8 @@ var styles = {
     }
 };
 
-var Result = function (_React$Component) {
-    _inherits(Result, _React$Component);
-
-    function Result(props) {
-        _classCallCheck(this, Result);
-
-        return _possibleConstructorReturn(this, (Result.__proto__ || Object.getPrototypeOf(Result)).call(this, props));
-    }
-
-    _createClass(Result, [{
-        key: "render",
-        value: function render() {
-            return React.createElement(
-                "div",
-                { style: styles.calculator__result },
-                React.createElement(
-                    "h6",
-                    { style: styles.text__form },
-                    "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442:"
-                ),
-                React.createElement(
-                    "p",
-                    { id: "result", style: styles.text__result },
-                    "0.00$"
-                )
-            );
-        }
-    }]);
-
-    return Result;
-}(React.Component);
-
-var Calculator = function (_React$Component2) {
-    _inherits(Calculator, _React$Component2);
+var Calculator = function (_React$Component) {
+    _inherits(Calculator, _React$Component);
 
     function Calculator(props) {
         _classCallCheck(this, Calculator);
@@ -116,6 +101,7 @@ var Calculator = function (_React$Component2) {
                     { style: styles.text__topic },
                     "\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0434\u043E\u0445\u043E\u0434\u0430 Affilate Coin"
                 ),
+                React.createElement(MainPart, null),
                 React.createElement(Result, null),
                 React.createElement("div", { style: styles.calculator__result__background })
             );
@@ -123,6 +109,74 @@ var Calculator = function (_React$Component2) {
     }]);
 
     return Calculator;
+}(React.Component);
+
+var MainPart = function (_React$Component2) {
+    _inherits(MainPart, _React$Component2);
+
+    function MainPart(props) {
+        _classCallCheck(this, MainPart);
+
+        return _possibleConstructorReturn(this, (MainPart.__proto__ || Object.getPrototypeOf(MainPart)).call(this, props));
+    }
+
+    _createClass(MainPart, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { style: styles.calculator__sum },
+                React.createElement(
+                    "h6",
+                    { style: styles.text__form },
+                    "\u0421\u0443\u043C\u043C\u0430, \u043A\u043E\u0442\u043E\u0440\u0443\u044E \u0445\u043E\u0442\u0438\u0442\u0435 \u0438\u043D\u0432\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C, $"
+                ),
+                React.createElement("input", {
+                    id: "sum",
+                    "class": "calculator__input",
+                    autocomplete: "off",
+                    value: "0",
+                    type: "number",
+                    pattern: "[0-9]*",
+                    inputmode: "decimal"
+                })
+            );
+        }
+    }]);
+
+    return MainPart;
+}(React.Component);
+
+var Result = function (_React$Component3) {
+    _inherits(Result, _React$Component3);
+
+    function Result(props) {
+        _classCallCheck(this, Result);
+
+        return _possibleConstructorReturn(this, (Result.__proto__ || Object.getPrototypeOf(Result)).call(this, props));
+    }
+
+    _createClass(Result, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { style: styles.calculator__result },
+                React.createElement(
+                    "h6",
+                    { style: Object.assign({}, styles.text__form, styles.calculator__result__text__form) },
+                    "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442:"
+                ),
+                React.createElement(
+                    "p",
+                    { id: "result", style: styles.text__result },
+                    "0.00$"
+                )
+            );
+        }
+    }]);
+
+    return Result;
 }(React.Component);
 
 ReactDOM.render(React.createElement(Calculator, null), document.getElementById("root"));

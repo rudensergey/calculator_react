@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
@@ -88,10 +91,6 @@ const styles = StyleSheet.create({
     },
 })
 class Calculator extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className={css(styles.calculator__box)}>
@@ -107,10 +106,6 @@ class Calculator extends React.Component {
 }
 
 class MainPart extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className={css(styles.calculator__sum)}>
@@ -130,10 +125,6 @@ class MainPart extends React.Component {
 }
 
 class Result extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <div className={css(styles.calculator__result)}>
@@ -641,3 +632,9 @@ ReactDOM.render(<Calculator />, document.getElementById("root"));
 //     <FilterableProductTable products={PRODUCTS} />,
 //     document.getElementById("root")
 // );
+
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

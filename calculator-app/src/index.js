@@ -130,7 +130,7 @@ class Result extends React.Component {
         return (
             <div className={css(styles.calculator__result)}>
                 {/* Here could be some troubles */}
-                {/* <h6 className={css(Object.assign({}, styles.text__form, styles.calculator__result__text__form))}>Результат:</h6> */}
+                <h6 className={css(styles.text__form, styles.calculator__result__text__form)}>Результат:</h6>
                 <p id="result" className={css(styles.text__result)}>
                     0.00$
                 </p>

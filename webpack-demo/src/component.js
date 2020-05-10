@@ -6,6 +6,127 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var styles = {
+    calculator__box: {
+        minWidth: "320px",
+        maxWidth: "650px",
+        height: "650px",
+        margin: "0px auto",
+        borderRadius: "3px",
+        background: "#FFFFFF",
+        boxShadow: "0px 9px 14px rgba(0, 0, 0, 0.09)",
+        display: "grid",
+        gridTemplateColumns: "7% 86% 7%",
+        gridTemplateRows: "5% 20% 20% 25% 10% 20%"
+    },
+
+    text__topic: {
+        fontSize: "57px",
+        fontWeight: "bold",
+        cursor: "default",
+        gridColumn: "2 / 3",
+        gridRow: "2 / 3"
+    },
+
+    calculator__result: {
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gridColumn: "2 / 3",
+        gridRow: "6 / 7",
+        zIndex: "2"
+    },
+
+    text__form: {
+        color: "white",
+        opacity: 0.7,
+        cursor: "default"
+    },
+
+    text__result: {
+        color: "white",
+        fontSize: "30px",
+        fontWeight: "bold",
+        cursor: "default"
+    },
+
+    calculator__result__background: {
+        height: "100%",
+        width: "100%",
+        borderRadius: "0px 0px 3px 3px",
+        gridColumn: "1 / -1",
+        gridRow: "6 / 7",
+        background: "#4D8D8D",
+        zIndex: "1"
+    }
+};
+
+var Result = function (_React$Component) {
+    _inherits(Result, _React$Component);
+
+    function Result(props) {
+        _classCallCheck(this, Result);
+
+        return _possibleConstructorReturn(this, (Result.__proto__ || Object.getPrototypeOf(Result)).call(this, props));
+    }
+
+    _createClass(Result, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { style: styles.calculator__result },
+                React.createElement(
+                    "h6",
+                    { style: styles.text__form },
+                    "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442:"
+                ),
+                React.createElement(
+                    "p",
+                    { id: "result", style: styles.text__result },
+                    "0.00$"
+                )
+            );
+        }
+    }]);
+
+    return Result;
+}(React.Component);
+
+var Calculator = function (_React$Component2) {
+    _inherits(Calculator, _React$Component2);
+
+    function Calculator(props) {
+        _classCallCheck(this, Calculator);
+
+        return _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this, props));
+    }
+
+    _createClass(Calculator, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "div",
+                { style: styles.calculator__box },
+                React.createElement(
+                    "h2",
+                    { style: styles.text__topic },
+                    "\u041A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440 \u0434\u043E\u0445\u043E\u0434\u0430 Affilate Coin"
+                ),
+                React.createElement(Result, null),
+                React.createElement("div", { style: styles.calculator__result__background })
+            );
+        }
+    }]);
+
+    return Calculator;
+}(React.Component);
+
+ReactDOM.render(React.createElement(Calculator, null), document.getElementById("root"));
+
 // function formatDate(date) {
 //     return date.toLocaleTimeString();
 // }
@@ -274,135 +395,227 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // ReactDOM.render(<Reservation />, document.getElementById('root'))
 
-var scaleNames = {
-    c: "Celsius",
-    f: "Fahrenheit"
-};
+// const scaleNames = {
+//     c: "Celsius",
+//     f: "Fahrenheit",
+// };
 
-function toCelsius(fahrenheit) {
-    return (fahrenheit - 32) * 5 / 9;
-}
+// function toCelsius(fahrenheit) {
+//     return ((fahrenheit - 32) * 5) / 9;
+// }
 
-function toFahrenheit(celsius) {
-    return celsius * 9 / 5 + 32;
-}
+// function toFahrenheit(celsius) {
+//     return (celsius * 9) / 5 + 32;
+// }
 
-function tryConvert(temperature, convert) {
-    var input = parseFloat(temperature);
-    if (Number.isNaN(input)) {
-        return "";
-    }
-    var output = convert(input);
-    var rounded = Math.round(output * 1000) / 1000;
-    return rounded.toString();
-}
+// function tryConvert(temperature, convert) {
+//     const input = parseFloat(temperature);
+//     if (Number.isNaN(input)) {
+//         return "";
+//     }
+//     const output = convert(input);
+//     const rounded = Math.round(output * 1000) / 1000;
+//     return rounded.toString();
+// }
 
-function BoilingVerdict(props) {
-    if (props.celsius >= 100) {
-        return React.createElement(
-            "p",
-            null,
-            "The water would boil."
-        );
-    }
-    return React.createElement(
-        "p",
-        null,
-        "The water would not boil."
-    );
-}
+// function BoilingVerdict(props) {
+//     if (props.celsius >= 100) {
+//         return <p>The water would boil.</p>;
+//     }
+//     return <p>The water would not boil.</p>;
+// }
 
-var TemperatureInput = function (_React$Component) {
-    _inherits(TemperatureInput, _React$Component);
+// class TemperatureInput extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleChange = this.handleChange.bind(this);
+//     }
 
-    function TemperatureInput(props) {
-        _classCallCheck(this, TemperatureInput);
+//     handleChange(e) {
+//         this.props.onTemperatureChange(e.target.value);
+//     }
 
-        var _this = _possibleConstructorReturn(this, (TemperatureInput.__proto__ || Object.getPrototypeOf(TemperatureInput)).call(this, props));
+//     render() {
+//         const temperature = this.props.temperature;
+//         const scale = this.props.scale;
+//         return (
+//             <fieldset>
+//                 <legend>Enter temperature in {scaleNames[scale]}:</legend>
+//                 <input value={temperature} onChange={this.handleChange} />
+//             </fieldset>
+//         );
+//     }
+// }
 
-        _this.handleChange = _this.handleChange.bind(_this);
-        return _this;
-    }
+// class Calculator extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+//         this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+//         this.state = { temperature: "", scale: "c" };
+//     }
 
-    _createClass(TemperatureInput, [{
-        key: "handleChange",
-        value: function handleChange(e) {
-            this.props.onTemperatureChange(e.target.value);
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var temperature = this.props.temperature;
-            var scale = this.props.scale;
-            return React.createElement(
-                "fieldset",
-                null,
-                React.createElement(
-                    "legend",
-                    null,
-                    "Enter temperature in ",
-                    scaleNames[scale],
-                    ":"
-                ),
-                React.createElement("input", { value: temperature, onChange: this.handleChange })
-            );
-        }
-    }]);
+//     handleCelsiusChange(temperature) {
+//         this.setState({ scale: "c", temperature });
+//     }
 
-    return TemperatureInput;
-}(React.Component);
+//     handleFahrenheitChange(temperature) {
+//         this.setState({ scale: "f", temperature });
+//     }
 
-var Calculator = function (_React$Component2) {
-    _inherits(Calculator, _React$Component2);
+//     render() {
+//         const scale = this.state.scale;
+//         const temperature = this.state.temperature;
+//         const celsius =
+//             scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+//         const fahrenheit =
+//             scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
 
-    function Calculator(props) {
-        _classCallCheck(this, Calculator);
+//         return (
+//             <div>
+//                 <TemperatureInput
+//                     scale="c"
+//                     temperature={celsius}
+//                     onTemperatureChange={this.handleCelsiusChange}
+//                 />
+//                 <TemperatureInput
+//                     scale="f"
+//                     temperature={fahrenheit}
+//                     onTemperatureChange={this.handleFahrenheitChange}
+//                 />
+//                 <BoilingVerdict celsius={parseFloat(celsius)} />
+//             </div>
+//         );
+//     }
+// }
 
-        var _this2 = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this, props));
+// ReactDOM.render(<Calculator />, document.getElementById("root"));
 
-        _this2.handleCelsiusChange = _this2.handleCelsiusChange.bind(_this2);
-        _this2.handleFahrenheitChange = _this2.handleFahrenheitChange.bind(_this2);
-        _this2.state = { temperature: "", scale: "c" };
-        return _this2;
-    }
+// class ProductCategoryRow extends React.Component {
+//     render() {
+//         const category = this.props.category;
+//         return (
+//             <tr>
+//                 <th colSpan="2">{category}</th>
+//             </tr>
+//         );
+//     }
+// }
 
-    _createClass(Calculator, [{
-        key: "handleCelsiusChange",
-        value: function handleCelsiusChange(temperature) {
-            this.setState({ scale: "c", temperature: temperature });
-        }
-    }, {
-        key: "handleFahrenheitChange",
-        value: function handleFahrenheitChange(temperature) {
-            this.setState({ scale: "f", temperature: temperature });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var scale = this.state.scale;
-            var temperature = this.state.temperature;
-            var celsius = scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
-            var fahrenheit = scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
+// class ProductRow extends React.Component {
+//     render() {
+//         const product = this.props.product;
+//         const name = product.stocked ? (
+//             product.name
+//         ) : (
+//             <span style={{ color: "red" }}>{product.name}</span>
+//         );
 
-            return React.createElement(
-                "div",
-                null,
-                React.createElement(TemperatureInput, {
-                    scale: "c",
-                    temperature: celsius,
-                    onTemperatureChange: this.handleCelsiusChange
-                }),
-                React.createElement(TemperatureInput, {
-                    scale: "f",
-                    temperature: fahrenheit,
-                    onTemperatureChange: this.handleFahrenheitChange
-                }),
-                React.createElement(BoilingVerdict, { celsius: parseFloat(celsius) })
-            );
-        }
-    }]);
+//         return (
+//             <tr>
+//                 <td>{name}</td>
+//                 <td>{product.price}</td>
+//             </tr>
+//         );
+//     }
+// }
 
-    return Calculator;
-}(React.Component);
+// class ProductTable extends React.Component {
+//     render() {
+//         const rows = [];
+//         let lastCategory = null;
 
-ReactDOM.render(React.createElement(Calculator, null), document.getElementById("root"));
+//         this.props.products.forEach((product) => {
+//             if (product.category !== lastCategory) {
+//                 rows.push(
+//                     <ProductCategoryRow
+//                         category={product.category}
+//                         key={product.category}
+//                     />
+//                 );
+//             }
+//             rows.push(<ProductRow product={product} key={product.name} />);
+//             lastCategory = product.category;
+//         });
+
+//         return (
+//             <table>
+//                 <thead>
+//                     <tr>
+//                         <th>Name</th>
+//                         <th>Price</th>
+//                     </tr>
+//                 </thead>
+//                 <tbody>{rows}</tbody>
+//             </table>
+//         );
+//     }
+// }
+
+// class SearchBar extends React.Component {
+//     render() {
+//         return (
+//             <form>
+//                 <input type="text" placeholder="Search..." />
+//                 <p>
+//                     <input type="checkbox" /> Only show products in stock
+//                 </p>
+//             </form>
+//         );
+//     }
+// }
+
+// class FilterableProductTable extends React.Component {
+//     render() {
+//         return (
+//             <div>
+//                 <SearchBar />
+//                 <ProductTable products={this.props.products} />
+//             </div>
+//         );
+//     }
+// }
+
+// const PRODUCTS = [
+//     {
+//         category: "Sporting Goods",
+//         price: "$49.99",
+//         stocked: true,
+//         name: "Football",
+//     },
+//     {
+//         category: "Sporting Goods",
+//         price: "$9.99",
+//         stocked: true,
+//         name: "Baseball",
+//     },
+//     {
+//         category: "Sporting Goods",
+//         price: "$29.99",
+//         stocked: false,
+//         name: "Basketball",
+//     },
+//     {
+//         category: "Electronics",
+//         price: "$99.99",
+//         stocked: true,
+//         name: "iPod Touch",
+//     },
+//     {
+//         category: "Electronics",
+//         price: "$399.99",
+//         stocked: false,
+//         name: "iPhone 5",
+//     },
+//     {
+//         category: "Electronics",
+//         price: "$199.99",
+//         stocked: true,
+//         name: "Nexus 7",
+//     },
+// ];
+
+// ReactDOM.render(
+//     <FilterableProductTable products={PRODUCTS} />,
+//     document.getElementById("root")
+// );

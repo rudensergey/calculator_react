@@ -54,6 +54,13 @@ const styles = StyleSheet.create({
         transitionProperty: "border",
         transitionDuration: "0.2s",
         boxSizing: "border-box",
+        ":hover": {
+            border: "4px solid #4D8D8D",
+        },
+        ":focus": {
+            outline: "none",
+            border: "4px solid #4D8D8D",
+        },
     },
 
     calculator__term: {
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
 
-    calculator__checkbox__checkmark: {
+    checkmark: {
         position: "absolute",
         left: "0",
         top: "-3px",
@@ -165,6 +172,24 @@ const styles = StyleSheet.create({
         width: "30px",
         borderRadius: "3px",
         backgroundColor: "rgb(231, 231, 231)",
+        "::after": {
+            content: "",
+            position: "absolute",
+            display: "none",
+            left: "12px",
+            top: "7px",
+            height: "10px",
+            width: "5px",
+            border: "solid white",
+            borderWidth: "0 3px 3px 0",
+            WebkitTransform: "rotate(45deg)",
+            MsTransform: "rotate(45deg)",
+            transform: "rotate(45deg)",
+        },
+    },
+
+    checkmark__hover: {
+        backgroundColor: "rgb(209, 209, 209)",
     },
 
     calculator__result: {
@@ -257,7 +282,13 @@ class Term extends React.Component {
 
                 <div className={css(styles.term__timeline)}>
                     <h6 className={css(styles.term__timeline__h6)}>30</h6>
-                    <h6 id="term__current" className={css(styles.term__timeline__h6)}>
+                    <h6
+                        id="term__current"
+                        className={css(
+                            styles.term__timeline__h6,
+                            styles.term__current
+                        )}
+                    >
                         30
                     </h6>
                     <h6 className={css(styles.term__timeline__h6)}>365</h6>
@@ -277,6 +308,8 @@ class Checkbox extends React.Component {
             <div className={css(styles.calculator__checkbox)}>
                 <label
                     id="checkboxLayout"
+                    onMouseEnter={this.handleHoverIn}
+                    onMouseOut={this.handleHoverOut}
                     className={css(
                         styles.calculator__checkbox__container,
                         styles.text__form
@@ -288,9 +321,7 @@ class Checkbox extends React.Component {
                         id="checkboxInput"
                         type="checkbox"
                     />
-                    <span
-                        className={css(styles.calculator__checkbox__checkmark)}
-                    ></span>
+                    <span className={css(styles.checkmark)}></span>
                 </label>
             </div>
         );

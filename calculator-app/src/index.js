@@ -4,16 +4,31 @@ import * as serviceWorker from "./serviceWorker";
 import "./style.css";
 import "./calculator.css";
 import "./mobile.css";
+import Mark from './mark.png';
 class Calculator extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            checkbox: false
+        }
+
+        this.hadleCheckbox = this.hadleCheckbox.bind(this)
+    }
+
+    hadleCheckbox() {
+        this.state.checkbox ? this.setState({checkbox: false}) : this.setState({checkbox: true})
+        console.log(this.state.checkbox)
+    }
+
     render() {
         return (
             <div className="calculator__box">
-                <h2 className="text__topic">
+                <h2 className="text__topic" onClick={this.hadleCheckbox}>
                     Калькулятор дохода Affilate Coin
                 </h2>
                 <MainPart />
                 <Term />
-                <Checkbox />
+                <Checkbox checkbox={this.hadleCheckbox} checked={this.state.checkbox}/>
                 <Result />
                 <div className="calculator__result__background"></div>
             </div>
@@ -67,13 +82,29 @@ class Term extends React.Component {
 }
 
 class Checkbox extends React.Component {
+    constructor(props){
+        super(props)
+        this.mark = "markNone"
+        this.checkboxColor = "checkmarkNoActive"
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(e) {
+        e.preventDefault()
+        console.log("checkbox click")
+        this.props.checkbox()
+        this.mark === "mark" ? this.mark = "markNone" : this.mark = "mark";
+        this.checkboxColor === "checkmarkNoActive" ? this.checkboxColor = "checkmarkActive" : this.checkboxColor = "checkmarkNoActive";
+    }
+
     render() {
         return (
             <div className="calculator__checkbox">
-                <label id="checkboxLayout" className="container text__form">
+                <img src={Mark} className={this.mark} alt="React Logo" />
+                <label onClick={this.handleClick} id="checkboxLayout" className="container text__form">
                     Учесть рост курса AFFILATE
-                    <input id="checkboxInput" type="checkbox" />
-                    <span className="checkmark"></span>
+                    <input id="checkboxInput" type="checkbox" defaultChecked={this.props.checked}/>
+                    <span className={this.checkboxColor}></span>
                 </label>
             </div>
         );

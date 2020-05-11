@@ -159,7 +159,7 @@
     cursor: pointer;
 }
 
-.calculator__checkbox .checkmark {
+.calculator__checkbox .checkmarkNoActive {
     position: absolute;
     left: 0;
     top: -3px;
@@ -167,14 +167,46 @@
     width: 30px;
     border-radius: 3px;
     background-color: rgb(231, 231, 231);
+
+    transition: all;
+    transition-duration: 0.3s;
 }
 
-.calculator__checkbox .container:hover input ~ .checkmark {
+.calculator__checkbox .container:hover input ~ .checkmarkNoActive {
     background-color: rgb(209, 209, 209);
 }
 
-.calculator__checkbox .container input:checked ~ .checkmark {
+.mark {
+    pointer-events: none;
+    position: absolute;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    width: 25px;
+    z-index: 2;
+}
+
+.markNone {
+    display: none;
+    pointer-events: none;
+    position: absolute;
+    padding-left: 3px;
+    padding-bottom: 3px;
+    width: 25px;
+    z-index: 2;
+}
+
+.checkmarkActive {
     background-color: #4d8d8d;
+    position: absolute;
+    left: 0;
+    top: -3px;
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
+}
+
+.calculator__checkbox .container:hover input ~ .checkmarkActive {
+    background-color: #427979;
 }
 
 .calculator__checkbox .checkmark::after {

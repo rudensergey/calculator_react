@@ -1,246 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./style.css";
 import * as serviceWorker from "./serviceWorker";
-import { StyleSheet, css } from "aphrodite";
-
-const styles = StyleSheet.create({
-    calculator__box: {
-        minWidth: "320px",
-        maxWidth: "650px",
-        height: "650px",
-        margin: "0px auto",
-        borderRadius: "3px",
-        background: "#FFFFFF",
-        boxShadow: "0px 9px 14px rgba(0, 0, 0, 0.09)",
-        display: "grid",
-        gridTemplateColumns: "7% 86% 7%",
-        gridTemplateRows: "5% 20% 20% 25% 10% 20%",
-    },
-
-    text__topic: {
-        fontSize: "57px",
-        fontWeight: "bold",
-        cursor: "default",
-        gridColumn: "2 / 3",
-        gridRow: "2 / 3",
-    },
-
-    text__form: {
-        color: "#B2B2B2",
-        fontSize: "19px",
-        fontWeight: "bold",
-        cursor: "default",
-    },
-
-    calculator__sum: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        gridColumn: "2 / 3",
-        gridRow: "3 / 4",
-    },
-
-    calculator__input: {
-        height: "62px",
-        width: "100%",
-        border: "4px solid #BDD0D1",
-        marginTop: "12px",
-        paddingLeft: "20px",
-        color: "#3F3F3F",
-        fontSize: "30px",
-        transitionProperty: "border",
-        transitionDuration: "0.2s",
-        boxSizing: "border-box",
-        ":hover": {
-            border: "4px solid #4D8D8D",
-        },
-        ":focus": {
-            outline: "none",
-            border: "4px solid #4D8D8D",
-        },
-    },
-
-    calculator__term: {
-        height: "100%",
-        width: "100%",
-        display: "grid",
-        justifyContent: "end",
-        gridColumn: "2 / 3",
-        gridRow: "4 / 5",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gridTemplateRows: "1fr 1fr 1fr",
-    },
-
-    calculator__term__text__form: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-        gridColumn: "1 / -1",
-        gridRow: "1 / 2",
-    },
-
-    term__timeline: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gridColumn: "1 / -1",
-        gridRow: "2 / 3",
-    },
-
-    term__timeline__h6: {
-        color: "#B2B2B2",
-        fontSize: "19px",
-        fontWeight: "bold",
-        cursor: "default",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-end",
-    },
-
-    term__current: {
-        color: "#3F3F3F",
-        fontSize: "30px",
-    },
-
-    term__line: {
-        height: "4px",
-        width: "100%",
-        margin: "20px 0px",
-        backgroundColor: "#C4C4C4",
-        gridColumn: "1 / -1",
-        gridRow: "3 / 4",
-    },
-
-    term__toggle: {
-        position: "relative",
-        top: "-18px",
-        height: "36px",
-        width: "36px",
-        margin: "auto 0px",
-        border: "3px solid #4D8D8D",
-        background: "#FFFFFF",
-        borderRadius: "50%",
-        cursor: "grab",
-        gridColumn: "1 / -1",
-        gridRow: "3 / 4",
-        touchAction: "pan-x",
-    },
-
-    calculator__checkbox: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gridColumn: "2 / 3",
-        gridRow: "5 / 6",
-    },
-
-    calculator__checkbox__container: {
-        position: "relative",
-        paddingLeft: "40px",
-        marginTop: "8px",
-        marginBottom: "12px",
-        color: "#3F3F3F",
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "19px",
-        webkitUserSelect: "none",
-        mozUserSelect: "none",
-        msUserSelect: "none",
-        userSelect: "none",
-        cursor: "pointer",
-        display: "block",
-    },
-
-    calculator__checkbox__input: {
-        position: "absolute",
-        height: "0",
-        width: "0",
-        opacity: "0",
-        cursor: "pointer",
-    },
-
-    checkmark: {
-        position: "absolute",
-        left: "0",
-        top: "-3px",
-        height: "30px",
-        width: "30px",
-        borderRadius: "3px",
-        backgroundColor: "rgb(231, 231, 231)",
-        "::after": {
-            content: "",
-            position: "absolute",
-            display: "none",
-            left: "12px",
-            top: "7px",
-            height: "10px",
-            width: "5px",
-            border: "solid white",
-            borderWidth: "0 3px 3px 0",
-            WebkitTransform: "rotate(45deg)",
-            MsTransform: "rotate(45deg)",
-            transform: "rotate(45deg)",
-        },
-    },
-
-    checkmark__hover: {
-        backgroundColor: "rgb(209, 209, 209)",
-    },
-
-    calculator__result: {
-        height: "100%",
-        width: "100%",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gridColumn: "2 / 3",
-        gridRow: "6 / 7",
-        zIndex: "2",
-    },
-
-    calculator__result__text__form: {
-        color: "white",
-        opacity: "0.7",
-        cursor: "default",
-    },
-
-    text__result: {
-        color: "white",
-        fontSize: "30px",
-        fontWeight: "bold",
-        cursor: "default",
-    },
-
-    calculator__result__background: {
-        height: "100%",
-        width: "100%",
-        borderRadius: "0px 0px 3px 3px",
-        gridColumn: "1 / -1",
-        gridRow: "6 / 7",
-        background: "#4D8D8D",
-        zIndex: "1",
-    },
-});
+import "./style.css";
+import "./calculator.css";
+import "./mobile.css";
 class Calculator extends React.Component {
     render() {
         return (
-            <div className={css(styles.calculator__box)}>
-                <h2 className={css(styles.text__topic)}>
+            <div className="calculator__box">
+                <h2 className="text__topic">
                     Калькулятор дохода Affilate Coin
                 </h2>
                 <MainPart />
                 <Term />
                 <Checkbox />
                 <Result />
-                <div
-                    className={css(styles.calculator__result__background)}
-                ></div>
+                <div className="calculator__result__background"></div>
             </div>
         );
     }
@@ -249,12 +24,12 @@ class Calculator extends React.Component {
 class MainPart extends React.Component {
     render() {
         return (
-            <div className={css(styles.calculator__sum)}>
-                <h6 className={css(styles.text__form)}>
+            <div className="calculator__sum">
+                <h6 className="text__form">
                     Сумма, которую хотите инвестировать, $
                 </h6>
                 <input
-                    className={css(styles.calculator__input)}
+                    className="calculator__input"
                     id="sum"
                     autoComplete="off"
                     value="0"
@@ -270,32 +45,21 @@ class MainPart extends React.Component {
 class Term extends React.Component {
     render() {
         return (
-            <div className={css(styles.calculator__term)}>
-                <h6
-                    className={css(
-                        styles.text__form,
-                        styles.calculator__term__text__form
-                    )}
-                >
+            <div className="calculator__term">
+                <h6 className="text__form">
                     Укажите срок инвестирования, дней
                 </h6>
 
-                <div className={css(styles.term__timeline)}>
-                    <h6 className={css(styles.term__timeline__h6)}>30</h6>
-                    <h6
-                        id="term__current"
-                        className={css(
-                            styles.term__timeline__h6,
-                            styles.term__current
-                        )}
-                    >
+                <div className="term__timeline">
+                    <h6>30</h6>
+                    <h6 id="term__current" className="term__current">
                         30
                     </h6>
-                    <h6 className={css(styles.term__timeline__h6)}>365</h6>
+                    <h6>365</h6>
                 </div>
 
-                <div id="timeline" className={css(styles.term__line)}>
-                    <div id="toggle" className={css(styles.term__toggle)}></div>
+                <div id="timeline" className="term__line">
+                    <div id="toggle" className="term__toggle"></div>
                 </div>
             </div>
         );
@@ -305,23 +69,11 @@ class Term extends React.Component {
 class Checkbox extends React.Component {
     render() {
         return (
-            <div className={css(styles.calculator__checkbox)}>
-                <label
-                    id="checkboxLayout"
-                    onMouseEnter={this.handleHoverIn}
-                    onMouseOut={this.handleHoverOut}
-                    className={css(
-                        styles.calculator__checkbox__container,
-                        styles.text__form
-                    )}
-                >
+            <div className="calculator__checkbox">
+                <label id="checkboxLayout" className="container text__form">
                     Учесть рост курса AFFILATE
-                    <input
-                        className={css(styles.calculator__checkbox__input)}
-                        id="checkboxInput"
-                        type="checkbox"
-                    />
-                    <span className={css(styles.checkmark)}></span>
+                    <input id="checkboxInput" type="checkbox" />
+                    <span className="checkmark"></span>
                 </label>
             </div>
         );
@@ -331,16 +83,9 @@ class Checkbox extends React.Component {
 class Result extends React.Component {
     render() {
         return (
-            <div className={css(styles.calculator__result)}>
-                <h6
-                    className={css(
-                        styles.text__form,
-                        styles.calculator__result__text__form
-                    )}
-                >
-                    Результат:
-                </h6>
-                <p id="result" className={css(styles.text__result)}>
+            <div className="calculator__result">
+                <h6 className="text__form">Результат:</h6>
+                <p id="result" className="text__result">
                     0.00$
                 </p>
             </div>

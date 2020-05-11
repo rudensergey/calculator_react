@@ -4,20 +4,28 @@ import * as serviceWorker from "./serviceWorker";
 import "./style.css";
 import "./calculator.css";
 import "./mobile.css";
-import Mark from './mark.png';
+import Mark from "./mark.png";
 class Calculator extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            checkbox: false
-        }
+            checkbox: false,
+            sum: "0",
+        };
 
-        this.hadleCheckbox = this.hadleCheckbox.bind(this)
+        this.handleSum = this.handleSum.bind(this);
+        this.hadleCheckbox = this.hadleCheckbox.bind(this);
+    }
+
+    handleSum(value) {
+        this.setState({sum: value})
     }
 
     hadleCheckbox() {
-        this.state.checkbox ? this.setState({checkbox: false}) : this.setState({checkbox: true})
-        console.log(this.state.checkbox)
+        this.state.checkbox
+            ? this.setState({ checkbox: false })
+            : this.setState({ checkbox: true });
+        console.log(this.state.checkbox);
     }
 
     render() {
@@ -26,9 +34,13 @@ class Calculator extends React.Component {
                 <h2 className="text__topic" onClick={this.hadleCheckbox}>
                     Калькулятор дохода Affilate Coin
                 </h2>
-                <MainPart />
+                <MainPart sum={this.state.sum} 
+                onChangeSum={this.handleSum}/>
                 <Term />
-                <Checkbox checkbox={this.hadleCheckbox} checked={this.state.checkbox}/>
+                <Checkbox
+                    checkbox={this.hadleCheckbox}
+                    checked={this.state.checkbox}
+                />
                 <Result />
                 <div className="calculator__result__background"></div>
             </div>
@@ -37,6 +49,18 @@ class Calculator extends React.Component {
 }
 
 class MainPart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "0",
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+        this.props.onChangeSum(+(e.target.value + "").replace(/\D/gi, ""))
+    }
+
     render() {
         return (
             <div className="calculator__sum">
@@ -44,13 +68,13 @@ class MainPart extends React.Component {
                     Сумма, которую хотите инвестировать, $
                 </h6>
                 <input
+                    value={this.props.sum}
+                    maxLength={11}
                     className="calculator__input"
-                    id="sum"
                     autoComplete="off"
-                    value="0"
-                    type="number"
                     pattern="[0-9]*"
                     inputMode="decimal"
+                    onChange={this.handleChange}
                 />
             </div>
         );
@@ -82,28 +106,37 @@ class Term extends React.Component {
 }
 
 class Checkbox extends React.Component {
-    constructor(props){
-        super(props)
-        this.mark = "markNone"
-        this.checkboxColor = "checkmarkNoActive"
+    constructor(props) {
+        super(props);
+        this.mark = "markNone";
+        this.checkboxColor = "checkmarkNoActive";
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(e) {
-        e.preventDefault()
-        console.log("checkbox click")
-        this.props.checkbox()
-        this.mark === "mark" ? this.mark = "markNone" : this.mark = "mark";
-        this.checkboxColor === "checkmarkNoActive" ? this.checkboxColor = "checkmarkActive" : this.checkboxColor = "checkmarkNoActive";
+        e.preventDefault();
+        this.props.checkbox();
+        this.mark === "mark" ? (this.mark = "markNone") : (this.mark = "mark");
+        this.checkboxColor === "checkmarkNoActive"
+            ? (this.checkboxColor = "checkmarkActive")
+            : (this.checkboxColor = "checkmarkNoActive");
     }
 
     render() {
         return (
             <div className="calculator__checkbox">
                 <img src={Mark} className={this.mark} alt="React Logo" />
-                <label onClick={this.handleClick} id="checkboxLayout" className="container text__form">
+                <label
+                    onClick={this.handleClick}
+                    id="checkboxLayout"
+                    className="container text__form"
+                >
                     Учесть рост курса AFFILATE
-                    <input id="checkboxInput" type="checkbox" defaultChecked={this.props.checked}/>
+                    <input
+                        id="checkboxInput"
+                        type="checkbox"
+                        defaultChecked={this.props.checked}
+                    />
                     <span className={this.checkboxColor}></span>
                 </label>
             </div>

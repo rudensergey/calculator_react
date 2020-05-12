@@ -11,21 +11,30 @@ class Calculator extends React.Component {
         this.state = {
             checkbox: false,
             sum: "0",
+            result: "0.00$"
         };
 
         this.handleSum = this.handleSum.bind(this);
         this.hadleCheckbox = this.hadleCheckbox.bind(this);
+        this.showResult = this.showResult.bind(this);
     }
 
     handleSum(value) {
-        this.setState({sum: value})
+        this.setState({sum: value}, ()=> this.showResult())
     }
 
     hadleCheckbox() {
         this.state.checkbox
-            ? this.setState({ checkbox: false })
-            : this.setState({ checkbox: true });
-        console.log(this.state.checkbox);
+            ? this.setState({ checkbox: false }, ()=> this.showResult())
+            : this.setState({ checkbox: true }, ()=> this.showResult());
+    }
+
+    showResult() {
+        let deposit = +this.state.sum
+        let currency = 1;
+        let days = 100;
+        if (!!this.state.checkbox) currency = 5;
+        this.setState({result: (deposit * Math.pow(1 + 0.0027, days) * (currency / days * days)).toFixed(2) + "$"})
     }
 
     render() {
@@ -41,7 +50,7 @@ class Calculator extends React.Component {
                     checkbox={this.hadleCheckbox}
                     checked={this.state.checkbox}
                 />
-                <Result />
+                <Result result={this.state.result}/>
                 <div className="calculator__result__background"></div>
             </div>
         );
@@ -150,7 +159,7 @@ class Result extends React.Component {
             <div className="calculator__result">
                 <h6 className="text__form">Результат:</h6>
                 <p id="result" className="text__result">
-                    0.00$
+                    {this.props.result}
                 </p>
             </div>
         );

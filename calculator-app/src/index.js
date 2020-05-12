@@ -11,30 +11,46 @@ class Calculator extends React.Component {
         this.state = {
             checkbox: false,
             sum: "0",
-            result: "0.00$"
+            result: "0.00$",
+            term: 30,
         };
 
         this.handleSum = this.handleSum.bind(this);
+        this.handleTerm = this.handleTerm.bind(this);
         this.hadleCheckbox = this.hadleCheckbox.bind(this);
         this.showResult = this.showResult.bind(this);
     }
 
     handleSum(value) {
-        this.setState({sum: value}, ()=> this.showResult())
+        this.setState({ sum: value }, () => this.showResult());
+    }
+
+    handleTerm(d) {
+        let days = d;
+        days < 30 && (days = 30);
+        days > 365 && (days = 365);
+        this.setState({ term: days }, () => this.showResult());
     }
 
     hadleCheckbox() {
         this.state.checkbox
-            ? this.setState({ checkbox: false }, ()=> this.showResult())
-            : this.setState({ checkbox: true }, ()=> this.showResult());
+            ? this.setState({ checkbox: false }, () => this.showResult())
+            : this.setState({ checkbox: true }, () => this.showResult());
     }
 
     showResult() {
-        let deposit = +this.state.sum
+        let deposit = +this.state.sum;
         let currency = 1;
-        let days = 100;
+        let days = this.state.term;
         if (!!this.state.checkbox) currency = 5;
-        this.setState({result: (deposit * Math.pow(1 + 0.0027, days) * (currency / days * days)).toFixed(2) + "$"})
+        this.setState({
+            result:
+                (
+                    deposit *
+                    Math.pow(1 + 0.0027, days) *
+                    ((currency / days) * days)
+                ).toFixed(2) + "$",
+        });
     }
 
     render() {
@@ -43,14 +59,13 @@ class Calculator extends React.Component {
                 <h2 className="text__topic" onClick={this.hadleCheckbox}>
                     Калькулятор дохода Affilate Coin
                 </h2>
-                <MainPart sum={this.state.sum} 
-                onChangeSum={this.handleSum}/>
-                <Term />
+                <MainPart sum={this.state.sum} onChangeSum={this.handleSum} />
+                <Term onChangeTerm={this.handleTerm} />
                 <Checkbox
                     checkbox={this.hadleCheckbox}
                     checked={this.state.checkbox}
                 />
-                <Result result={this.state.result}/>
+                <Result result={this.state.result} />
                 <div className="calculator__result__background"></div>
             </div>
         );
@@ -60,14 +75,11 @@ class Calculator extends React.Component {
 class MainPart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: "0",
-        };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(e) {
-        this.props.onChangeSum(+(e.target.value + "").replace(/\D/gi, ""))
+        this.props.onChangeSum(+(e.target.value + "").replace(/\D/gi, ""));
     }
 
     render() {
@@ -91,6 +103,99 @@ class MainPart extends React.Component {
 }
 
 class Term extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleMouseDrag = this.handleMouseDrag.bind(this);
+        this.handleTouchDrag = this.handleTouchDrag.bind(this);
+    }
+
+    handleTouchDrag(event) {
+        console.log("touch");
+
+        var toggle = document.getElementById("toggle");
+        var timeline = document.getElementById("timeline");
+        let self = this;
+
+        event.preventDefault();
+
+        var touchLoc = event.targetTouches[0];
+        var shiftX = touchLoc.clientX - toggle.getBoundingClientRect().left;
+
+        document.addEventListener("touchmove", onMouseMove);
+        document.addEventListener("touchend", onMouseUp);
+
+        function onMouseMove(e) {
+            var touchLocation = e.targetTouches[0];
+
+            var newLeft =
+                touchLocation.clientX -
+                shiftX -
+                timeline.getBoundingClientRect().left;
+
+            var coords = timeline.getBoundingClientRect();
+
+            var point =
+                (coords.left + coords.width - 18 - (coords.left + 36)) / 345;
+
+            self.props.onChangeTerm(
+                Math.round(
+                    (touchLocation.clientX - (coords.left + 36)) / point
+                ) + 30
+            );
+
+            // курсор вышел из слайдера => оставить бегунок в его границах.
+            if (newLeft < 0) newLeft = 0;
+            var rightEdge = timeline.offsetWidth - toggle.offsetWidth;
+            if (newLeft > rightEdge) newLeft = rightEdge;
+
+            toggle.style.left = newLeft + "px";
+        }
+
+        function onMouseUp() {
+            document.removeEventListener("touchmove", onMouseMove);
+            document.removeEventListener("touchend", onMouseUp);
+        }
+    }
+
+    handleMouseDrag(event) {
+        var toggle = document.getElementById("toggle");
+        var timeline = document.getElementById("timeline");
+        const self = this;
+
+        event.preventDefault();
+
+        var shiftX = event.clientX - toggle.getBoundingClientRect().left;
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+
+        function onMouseMove(event) {
+            var newLeft =
+                event.clientX - shiftX - timeline.getBoundingClientRect().left;
+
+            var coords = timeline.getBoundingClientRect();
+
+            var point =
+                (coords.left + coords.width - 18 - (coords.left + 36)) / 335;
+
+            self.props.onChangeTerm(
+                Math.round((event.clientX - (coords.left + 36)) / point) + 30
+            );
+
+            if (newLeft < 0) newLeft = 0;
+            var rightEdge = timeline.offsetWidth - toggle.offsetWidth;
+            if (newLeft > rightEdge) newLeft = rightEdge;
+
+            toggle.style.left = newLeft + "px";
+        }
+
+        function onMouseUp() {
+            document.removeEventListener("mouseup", onMouseUp);
+            document.removeEventListener("mousemove", onMouseMove);
+        }
+    }
+
     render() {
         return (
             <div className="calculator__term">
@@ -107,7 +212,12 @@ class Term extends React.Component {
                 </div>
 
                 <div id="timeline" className="term__line">
-                    <div id="toggle" className="term__toggle"></div>
+                    <div
+                        id="toggle"
+                        className="term__toggle"
+                        onTouchStart={this.handleTouchDrag}
+                        onMouseDown={this.handleMouseDrag}
+                    ></div>
                 </div>
             </div>
         );

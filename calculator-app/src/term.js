@@ -74,11 +74,11 @@ export default class Term extends React.Component {
     }
 
     handleTouchDrag(event) {
-        this.handleTerm(event, true)
+        this.handleTerm(event, true);
     }
 
     handleMouseDrag(event) {
-        this.handleTerm(event, false)
+        this.handleTerm(event, false);
     }
 
     render() {
@@ -91,7 +91,7 @@ export default class Term extends React.Component {
                 <div className="term__timeline">
                     <h6>30</h6>
                     <h6 id="term__current" className="term__current">
-                        30
+                        {this.props.term}
                     </h6>
                     <h6>365</h6>
                 </div>

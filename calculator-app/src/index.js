@@ -66,7 +66,7 @@ class Calculator extends React.Component {
                     Калькулятор дохода Affilate Coin
                 </h2>
                 <MainPart sum={this.state.sum} onChangeSum={this.handleSum} />
-                <Term onChangeTerm={this.handleTerm} />
+                <Term onChangeTerm={this.handleTerm} term={this.state.term} />
                 <Checkbox
                     checkbox={this.hadleCheckbox}
                     checked={this.state.checkbox}

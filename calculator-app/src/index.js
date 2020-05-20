@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import * as serviceWorker from "./serviceWorker";
 
-import "./style.css";
-import "./calculator.css";
-import "./mobile.css";
+import "./style/style.css";
+import "./style/calculator.css";
+import "./style/mobile.css";
 
 import MainPart from "./mainpart";
 import Term from "./term";

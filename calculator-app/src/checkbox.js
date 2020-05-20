@@ -1,5 +1,5 @@
 import React from "react";
-import Mark from "./mark.png";
+import Mark from "./media/mark.png";
 
 export default class Checkbox extends React.Component {
     constructor(props) {

@@ -92,7 +92,8 @@ export default class Term extends React.Component {
                         </h6>
 
                         <div className="term__timeline ">
-                            <h6 className="theme-switcher"
+                            <h6
+                                className="theme-switcher"
                                 style={{
                                     color:
                                         value === "light"
@@ -114,7 +115,8 @@ export default class Term extends React.Component {
                             >
                                 {this.props.term}
                             </h6>
-                            <h6 className="theme-switcher"
+                            <h6
+                                className="theme-switcher"
                                 style={{
                                     color:
                                         value === "light"
@@ -148,7 +150,7 @@ export default class Term extends React.Component {
                                             : "3px solid #52AA91",
                                 }}
                                 id="toggle"
-                                className="term__toggle theme-switcher"
+                                className="term__toggle"
                                 onTouchStart={this.handleTouchDrag}
                                 onMouseDown={this.handleMouseDrag}
                             ></div>

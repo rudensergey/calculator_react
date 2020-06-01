@@ -10,8 +10,10 @@ export default class Checkbox extends React.Component {
     }
 
     handleClick = (e) => {
+        const { checkbox } = this.props;
+
         e.preventDefault();
-        this.props.checkbox();
+        checkbox();
         this.mark === "mark" ? (this.mark = "markNone") : (this.mark = "mark");
         this.checkboxColor === "checkmarkNoActive"
             ? (this.checkboxColor = "checkmarkActive")
@@ -19,6 +21,8 @@ export default class Checkbox extends React.Component {
     };
 
     render() {
+        const { checked } = this.props;
+
         return (
             <ThemeContext.Consumer>
                 {(value) => (
@@ -43,7 +47,7 @@ export default class Checkbox extends React.Component {
                             <input
                                 id="checkboxInput"
                                 type="checkbox"
-                                defaultChecked={this.props.checked}
+                                defaultChecked={checked}
                             />
                             <span
                                 style={{
@@ -58,7 +62,9 @@ export default class Checkbox extends React.Component {
                                             ? "rgba(255, 255, 255, 0.5)"
                                             : "#52AA91",
                                 }}
-                                className={this.checkboxColor + " theme-switcher"}
+                                className={
+                                    this.checkboxColor + " theme-switcher"
+                                }
                             ></span>
                         </label>
                     </div>

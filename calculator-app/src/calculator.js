@@ -39,10 +39,12 @@ export default class Calculator extends React.Component {
     };
 
     showResult = () => {
-        let deposit = +this.state.sum;
+        const { sum, term, checkbox } = this.state;
+
+        let deposit = +sum;
         let currency = 1;
-        let days = this.state.term;
-        if (!!this.state.checkbox) currency = 5;
+        let days = term;
+        if (!!checkbox) currency = 5;
         this.setState({
             result:
                 (

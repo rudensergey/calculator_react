@@ -20,8 +20,10 @@ class App extends React.Component {
     };
 
     render() {
+        const { theme } = this.props;
+
         return (
-            <ThemeContext.Provider value={this.state.theme}>
+            <ThemeContext.Provider value={theme}>
                 <Calculator />
                 <div
                     style={{
@@ -30,10 +32,7 @@ class App extends React.Component {
                         justifyContent: "center",
                     }}
                 >
-                    <button
-                        className="theme-button"
-                        onClick={this.changeTheme}
-                    >
+                    <button className="theme-button" onClick={this.changeTheme}>
                         Поменять тему
                     </button>
                 </div>

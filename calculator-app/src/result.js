@@ -7,7 +7,7 @@ export default function Result(props) {
             {(value) => (
                 <div className="calculator__result">
                     <h6
-                        className="text__form"
+                        className="text__form theme-switcher"
                         style={{
                             color: value === "light" ? "white" : "#FFFFFF",
                         }}
@@ -16,7 +16,7 @@ export default function Result(props) {
                     </h6>
                     <p
                         id="result"
-                        className="text__result"
+                        className="text__result theme-switcher"
                         style={{ color: "white" }}
                     >
                         {props.result}

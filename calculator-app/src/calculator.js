@@ -58,14 +58,14 @@ export default class Calculator extends React.Component {
             <ThemeContext.Consumer>
                 {(value) => (
                     <div
-                        className="calculator__box"
+                        className="calculator__box theme-switcher"
                         style={{
                             backgroundColor:
                                 value === "light" ? "#FFFFFF" : "#060A0F",
                         }}
                     >
                         <h2
-                            className="text__topic"
+                            className="text__topic theme-switcher"
                             style={{
                                 color:
                                     value === "light" ? "#3F3F3F" : "#FFFFFF",
@@ -88,7 +88,7 @@ export default class Calculator extends React.Component {
                         />
                         <Result result={this.state.result} />
                         <div
-                            className="calculator__result__background"
+                            className="calculator__result__background theme-switcher"
                             style={{
                                 background:
                                     value === "light" ? "#4D8D8D" : "#52AA91",

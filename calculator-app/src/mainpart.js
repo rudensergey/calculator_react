@@ -12,7 +12,7 @@ export default class MainPart extends React.Component {
                 {(value) => (
                     <div className="calculator__sum">
                         <h6
-                            className="text__form"
+                            className="text__form theme-switcher"
                             style={{
                                 color:
                                     value === "light"
@@ -35,7 +35,7 @@ export default class MainPart extends React.Component {
                             }}
                             value={this.props.sum}
                             maxLength={11}
-                            className="calculator__input"
+                            className="calculator__input theme-switcher"
                             autoComplete="off"
                             pattern="[0-9]*"
                             inputMode="decimal"

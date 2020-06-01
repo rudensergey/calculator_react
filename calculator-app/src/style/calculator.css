@@ -7,10 +7,10 @@
     box-shadow: 0px 9px 14px rgba(0, 0, 0, 0.09);
     display: grid;
     grid-template-columns: 7% 86% 7%;
-	grid-template-rows: 5% 20% 20% 25% 10% 20%;
-	
-	transition-property: background-color;
-	transition-duration: 1s;
+    grid-template-rows: 5% 20% 20% 25% 10% 20%;
+
+    transition-property: background-color;
+    transition-duration: 1s;
 }
 
 .text__topic {
@@ -43,8 +43,6 @@
     margin-top: 12px;
     padding-left: 20px;
     font-size: 30px;
-    transition-property: border;
-    transition-duration: 0.2s;
     box-sizing: border-box;
 }
 
@@ -88,7 +86,6 @@
 }
 
 .term__timeline h6 {
-    
     font-size: 19px;
     font-weight: bold;
     cursor: default;
@@ -105,7 +102,7 @@
     height: 4px;
     width: 100%;
     margin: 20px 0px;
-    
+
     grid-column: 1 / -1;
     grid-row: 3 / 4;
 }
@@ -198,7 +195,7 @@
 }
 
 .calculator__checkbox .container:hover input ~ .checkmarkActive {
-    background-color: #79CAB5;
+    background-color: #79cab5;
 }
 
 .calculator__checkbox .checkmark::after {
@@ -253,4 +250,9 @@
     grid-column: 1 / -1;
     grid-row: 6 / 7;
     z-index: 1;
+}
+
+.theme-switcher {
+    transition-property: background-color color border;
+    transition-duration: 1s;
 }

@@ -22,7 +22,7 @@ export default class Checkbox extends React.Component {
         return (
             <ThemeContext.Consumer>
                 {(value) => (
-                    <div className="calculator__checkbox">
+                    <div className="calculator__checkbox ">
                         <img
                             src={Mark}
                             className={this.mark}
@@ -37,7 +37,7 @@ export default class Checkbox extends React.Component {
                             }}
                             onClick={this.handleClick}
                             id="checkboxLayout"
-                            className="container text__form"
+                            className="container text__form theme-switcher"
                         >
                             Учесть рост курса AFFILATE
                             <input
@@ -58,7 +58,7 @@ export default class Checkbox extends React.Component {
                                             ? "rgba(255, 255, 255, 0.5)"
                                             : "#52AA91",
                                 }}
-                                className={this.checkboxColor}
+                                className={this.checkboxColor + " theme-switcher"}
                             ></span>
                         </label>
                     </div>

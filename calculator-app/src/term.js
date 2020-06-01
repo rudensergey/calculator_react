@@ -80,7 +80,7 @@ export default class Term extends React.Component {
                 {(value) => (
                     <div className="calculator__term">
                         <h6
-                            className="text__form"
+                            className="text__form theme-switcher"
                             style={{
                                 color:
                                     value === "light"
@@ -91,8 +91,8 @@ export default class Term extends React.Component {
                             Укажите срок инвестирования, дней
                         </h6>
 
-                        <div className="term__timeline">
-                            <h6
+                        <div className="term__timeline ">
+                            <h6 className="theme-switcher"
                                 style={{
                                     color:
                                         value === "light"
@@ -104,7 +104,7 @@ export default class Term extends React.Component {
                             </h6>
                             <h6
                                 id="term__current"
-                                className="term__current"
+                                className="term__current theme-switcher"
                                 style={{
                                     color:
                                         value === "light"
@@ -114,7 +114,7 @@ export default class Term extends React.Component {
                             >
                                 {this.props.term}
                             </h6>
-                            <h6
+                            <h6 className="theme-switcher"
                                 style={{
                                     color:
                                         value === "light"
@@ -128,7 +128,7 @@ export default class Term extends React.Component {
 
                         <div
                             id="timeline"
-                            className="term__line"
+                            className="term__line theme-switcher"
                             style={{
                                 backgroundColor:
                                     value === "light"
@@ -148,7 +148,7 @@ export default class Term extends React.Component {
                                             : "3px solid #52AA91",
                                 }}
                                 id="toggle"
-                                className="term__toggle"
+                                className="term__toggle theme-switcher"
                                 onTouchStart={this.handleTouchDrag}
                                 onMouseDown={this.handleMouseDrag}
                             ></div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { ThemeContext } from "./themecontext.js";
 
 export default class Term extends React.Component {
     handleTerm = (event, touch) => {
@@ -75,40 +76,86 @@ export default class Term extends React.Component {
 
     render() {
         return (
-            <div className="calculator__term">
-                <h6 className="text__form">
-                    Укажите срок инвестирования, дней
-                </h6>
+            <ThemeContext.Consumer>
+                {(value) => (
+                    <div className="calculator__term">
+                        <h6
+                            className="text__form"
+                            style={{
+                                color:
+                                    value === "light"
+                                        ? "#444444"
+                                        : "rgba(255, 255, 255, 0.7)",
+                            }}
+                        >
+                            Укажите срок инвестирования, дней
+                        </h6>
 
-                <div className="term__timeline">
-                    <h6 style={{ color: "#b2b2b2" }}>30</h6>
-                    <h6
-                        id="term__current"
-                        className="term__current"
-                        stlye={{ color: "#3f3f3f" }}
-                    >
-                        {this.props.term}
-                    </h6>
-                    <h6 style={{ color: "#b2b2b2" }}>365</h6>
-                </div>
+                        <div className="term__timeline">
+                            <h6
+                                style={{
+                                    color:
+                                        value === "light"
+                                            ? "#b2b2b2"
+                                            : "rgba(255, 255, 255, 0.3)",
+                                }}
+                            >
+                                30
+                            </h6>
+                            <h6
+                                id="term__current"
+                                className="term__current"
+                                style={{
+                                    color:
+                                        value === "light"
+                                            ? "#3f3f3f"
+                                            : "rgba(255, 255, 255, 0.7)",
+                                }}
+                            >
+                                {this.props.term}
+                            </h6>
+                            <h6
+                                style={{
+                                    color:
+                                        value === "light"
+                                            ? "#b2b2b2"
+                                            : "rgba(255, 255, 255, 0.3)",
+                                }}
+                            >
+                                365
+                            </h6>
+                        </div>
 
-                <div
-                    id="timeline"
-                    className="term__line"
-                    style={{ backgroundColor: "#c4c4c4" }}
-                >
-                    <div
-                        style={{
-                            backgroundColor: "#ffffff",
-                            border: "3px solid #4d8d8d",
-                        }}
-                        id="toggle"
-                        className="term__toggle"
-                        onTouchStart={this.handleTouchDrag}
-                        onMouseDown={this.handleMouseDrag}
-                    ></div>
-                </div>
-            </div>
+                        <div
+                            id="timeline"
+                            className="term__line"
+                            style={{
+                                backgroundColor:
+                                    value === "light"
+                                        ? "#c4c4c4"
+                                        : "rgba(255, 255, 255, 0.2)",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    backgroundColor:
+                                        value === "light"
+                                            ? "#ffffff"
+                                            : "#35393F",
+                                    border:
+                                        value === "light"
+                                            ? "3px solid #4d8d8d"
+                                            : "3px solid #52AA91",
+                                }}
+                                id="toggle"
+                                className="term__toggle"
+                                onTouchStart={this.handleTouchDrag}
+                                onMouseDown={this.handleMouseDrag}
+                            ></div>
+                        </div>
+                    </div>
+                )}
+            </ThemeContext.Consumer>
         );
     }
 }

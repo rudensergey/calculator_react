@@ -7,7 +7,10 @@
     box-shadow: 0px 9px 14px rgba(0, 0, 0, 0.09);
     display: grid;
     grid-template-columns: 7% 86% 7%;
-    grid-template-rows: 5% 20% 20% 25% 10% 20%;
+	grid-template-rows: 5% 20% 20% 25% 10% 20%;
+	
+	transition-property: background-color;
+	transition-duration: 1s;
 }
 
 .text__topic {
@@ -95,7 +98,6 @@
 }
 
 .term__timeline .term__current {
-    
     font-size: 30px;
 }
 
@@ -196,7 +198,7 @@
 }
 
 .calculator__checkbox .container:hover input ~ .checkmarkActive {
-    background-color: #427979;
+    background-color: #79CAB5;
 }
 
 .calculator__checkbox .checkmark::after {

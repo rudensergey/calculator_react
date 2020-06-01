@@ -1,15 +1,7 @@
 import React from "react";
 
 export default class Term extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handleMouseDrag = this.handleMouseDrag.bind(this);
-        this.handleTouchDrag = this.handleTouchDrag.bind(this);
-        this.handleTerm = this.handleTerm.bind(this);
-    }
-
-    handleTerm(event, touch) {
+    handleTerm = (event, touch) => {
         var toggle = document.getElementById("toggle");
         var timeline = document.getElementById("timeline");
         var shiftX;
@@ -71,15 +63,15 @@ export default class Term extends React.Component {
 
             toggle.style.left = newLeft + "px";
         }
-    }
+    };
 
-    handleTouchDrag(event) {
+    handleTouchDrag = (event) => {
         this.handleTerm(event, true);
-    }
+    };
 
-    handleMouseDrag(event) {
+    handleMouseDrag = (event) => {
         this.handleTerm(event, false);
-    }
+    };
 
     render() {
         return (

@@ -20,31 +20,26 @@ class Calculator extends React.Component {
             result: "0.00$",
             term: 30,
         };
-
-        this.handleSum = this.handleSum.bind(this);
-        this.handleTerm = this.handleTerm.bind(this);
-        this.hadleCheckbox = this.hadleCheckbox.bind(this);
-        this.showResult = this.showResult.bind(this);
     }
 
-    handleSum(value) {
+    handleSum = (value) => {
         this.setState({ sum: value }, () => this.showResult());
-    }
+    };
 
-    handleTerm(d) {
+    handleTerm = (d) => {
         let days = d;
         days < 30 && (days = 30);
         days > 365 && (days = 365);
         this.setState({ term: days }, () => this.showResult());
-    }
+    };
 
-    hadleCheckbox() {
+    hadleCheckbox = () => {
         this.state.checkbox
             ? this.setState({ checkbox: false }, () => this.showResult())
             : this.setState({ checkbox: true }, () => this.showResult());
-    }
+    };
 
-    showResult() {
+    showResult = () => {
         let deposit = +this.state.sum;
         let currency = 1;
         let days = this.state.term;
@@ -57,7 +52,7 @@ class Calculator extends React.Component {
                     ((currency / days) * days)
                 ).toFixed(2) + "$",
         });
-    }
+    };
 
     render() {
         return (

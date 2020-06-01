@@ -1,14 +1,9 @@
 import React from "react";
 
 export default class MainPart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
+    handleChange = (e) => {
         this.props.onChangeSum(+(e.target.value + "").replace(/\D/gi, ""));
-    }
+    };
 
     render() {
         return (

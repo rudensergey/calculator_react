@@ -6,10 +6,9 @@ export default class Checkbox extends React.Component {
         super(props);
         this.mark = "markNone";
         this.checkboxColor = "checkmarkNoActive";
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(e) {
+    handleClick = e => {
         e.preventDefault();
         this.props.checkbox();
         this.mark === "mark" ? (this.mark = "markNone") : (this.mark = "mark");

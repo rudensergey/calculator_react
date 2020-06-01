@@ -8,20 +8,21 @@ export default class Checkbox extends React.Component {
         this.checkboxColor = "checkmarkNoActive";
     }
 
-    handleClick = e => {
+    handleClick = (e) => {
         e.preventDefault();
         this.props.checkbox();
         this.mark === "mark" ? (this.mark = "markNone") : (this.mark = "mark");
         this.checkboxColor === "checkmarkNoActive"
             ? (this.checkboxColor = "checkmarkActive")
             : (this.checkboxColor = "checkmarkNoActive");
-    }
+    };
 
     render() {
         return (
             <div className="calculator__checkbox">
                 <img src={Mark} className={this.mark} alt="React Logo" />
                 <label
+                    style={{ color: "#3F3F3F" }}
                     onClick={this.handleClick}
                     id="checkboxLayout"
                     className="container text__form"
@@ -32,7 +33,15 @@ export default class Checkbox extends React.Component {
                         type="checkbox"
                         defaultChecked={this.props.checked}
                     />
-                    <span className={this.checkboxColor}></span>
+                    <span
+                        style={{
+                            backgroundColor:
+                                (this.checkboxColor === "checkmarkNoActive"
+                                    ? "rgb(231, 231, 231)"
+                                    : "#4D8D8D"),
+                        }}
+                        className={this.checkboxColor}
+                    ></span>
                 </label>
             </div>
         );

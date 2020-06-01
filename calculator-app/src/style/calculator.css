@@ -4,7 +4,6 @@
     height: 650px;
     margin: 0px auto;
     border-radius: 3px;
-    background: #FFFFFF;
     box-shadow: 0px 9px 14px rgba(0, 0, 0, 0.09);
     display: grid;
     grid-template-columns: 7% 86% 7%;
@@ -20,7 +19,6 @@
 }
 
 .text__form {
-    color: #B2B2B2;
     font-size: 19px;
     font-weight: bold;
     cursor: default;
@@ -39,10 +37,8 @@
 .calculator__input {
     height: 62px;
     width: 100%;
-    border: 4px solid #BDD0D1;
     margin-top: 12px;
     padding-left: 20px;
-    color: #3F3F3F;
     font-size: 30px;
     transition-property: border;
     transition-duration: 0.2s;
@@ -50,12 +46,12 @@
 }
 
 .calculator__input:hover {
-    border: 4px solid #4D8D8D;
+    border: 4px solid #4d8d8d;
 }
 
 .calculator__input:focus {
     outline: none;
-    border: 4px solid #4D8D8D;
+    border: 4px solid #4d8d8d;
 }
 
 .calculator__term {
@@ -89,7 +85,7 @@
 }
 
 .term__timeline h6 {
-    color: #B2B2B2;
+    
     font-size: 19px;
     font-weight: bold;
     cursor: default;
@@ -99,7 +95,7 @@
 }
 
 .term__timeline .term__current {
-    color: #3F3F3F;
+    
     font-size: 30px;
 }
 
@@ -107,7 +103,7 @@
     height: 4px;
     width: 100%;
     margin: 20px 0px;
-    background-color: #C4C4C4;
+    
     grid-column: 1 / -1;
     grid-row: 3 / 4;
 }
@@ -118,8 +114,6 @@
     height: 36px;
     width: 36px;
     margin: auto 0px;
-    border: 3px solid #4D8D8D;
-    background: #FFFFFF;
     border-radius: 50%;
     cursor: grab;
     grid-column: 1 / -1;
@@ -140,7 +134,6 @@
     padding-left: 40px;
     margin-top: 8px;
     margin-bottom: 12px;
-    color: #3F3F3F;
     font-family: "Roboto", sans-serif;
     font-size: 19px;
     -webkit-user-select: none;
@@ -166,7 +159,6 @@
     height: 30px;
     width: 30px;
     border-radius: 3px;
-    background-color: rgb(231, 231, 231);
     transition: all;
     transition-duration: 0.3s;
 }
@@ -201,7 +193,6 @@
     height: 30px;
     width: 30px;
     border-radius: 3px;
-    background-color: #4D8D8D;
 }
 
 .calculator__checkbox .container:hover input ~ .checkmarkActive {
@@ -243,13 +234,11 @@
 }
 
 .calculator__result .text__form {
-    color: white;
     opacity: 0.7;
     cursor: default;
 }
 
 .calculator__result .text__result {
-    color: white;
     font-size: 30px;
     font-weight: bold;
     cursor: default;
@@ -261,6 +250,5 @@
     border-radius: 0px 0px 3px 3px;
     grid-column: 1 / -1;
     grid-row: 6 / 7;
-    background: #4D8D8D;
     z-index: 1;
 }

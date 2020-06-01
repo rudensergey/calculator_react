@@ -8,10 +8,14 @@ export default class MainPart extends React.Component {
     render() {
         return (
             <div className="calculator__sum">
-                <h6 className="text__form">
+                <h6 className="text__form" style={{ color: "#B2B2B2" }}>
                     Сумма, которую хотите инвестировать, $
                 </h6>
                 <input
+                    style={{
+                        color: "#333333",
+                        border: "4px solid #BDD0D1",
+                    }}
                     value={this.props.sum}
                     maxLength={11}
                     className="calculator__input"

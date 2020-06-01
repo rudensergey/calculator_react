@@ -81,15 +81,27 @@ export default class Term extends React.Component {
                 </h6>
 
                 <div className="term__timeline">
-                    <h6>30</h6>
-                    <h6 id="term__current" className="term__current">
+                    <h6 style={{ color: "#b2b2b2" }}>30</h6>
+                    <h6
+                        id="term__current"
+                        className="term__current"
+                        stlye={{ color: "#3f3f3f" }}
+                    >
                         {this.props.term}
                     </h6>
-                    <h6>365</h6>
+                    <h6 style={{ color: "#b2b2b2" }}>365</h6>
                 </div>
 
-                <div id="timeline" className="term__line">
+                <div
+                    id="timeline"
+                    className="term__line"
+                    style={{ backgroundColor: "#c4c4c4" }}
+                >
                     <div
+                        style={{
+                            backgroundColor: "#ffffff",
+                            border: "3px solid #4d8d8d",
+                        }}
                         id="toggle"
                         className="term__toggle"
                         onTouchStart={this.handleTouchDrag}

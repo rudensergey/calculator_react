@@ -56,8 +56,15 @@ class Calculator extends React.Component {
 
     render() {
         return (
-            <div className="calculator__box">
-                <h2 className="text__topic" onClick={this.hadleCheckbox}>
+            <div
+                className="calculator__box"
+                style={{ backgroundColor: "#FFFFFF" }}
+            >
+                <h2
+                    className="text__topic"
+                    style={{ color: "#3F3F3F" }}
+                    onClick={this.hadleCheckbox}
+                >
                     Калькулятор дохода Affilate Coin
                 </h2>
                 <MainPart sum={this.state.sum} onChangeSum={this.handleSum} />
@@ -67,7 +74,10 @@ class Calculator extends React.Component {
                     checked={this.state.checkbox}
                 />
                 <Result result={this.state.result} />
-                <div className="calculator__result__background"></div>
+                <div
+                    className="calculator__result__background"
+                    style={{ background: "#4D8D8D" }}
+                ></div>
             </div>
         );
     }

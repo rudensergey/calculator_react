@@ -32,7 +32,9 @@ a {
     background-color: white;
 
     transition-property: color background-color border box-shadow;
-    transition-duration: 0.2s;
+	transition-duration: 0.2s;
+	
+	outline: none;
 }
 
 .theme-button:hover {

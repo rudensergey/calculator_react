@@ -20,7 +20,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { theme } = this.props;
+        const { theme } = this.state;
 
         return (
             <ThemeContext.Provider value={theme}>
